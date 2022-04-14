@@ -1,0 +1,9 @@
+public with sharing class ContactController {
+    @AuraEnabled(Cacheable=true)
+    public static List <Contact> getAllContactsSorting(String orderBy, String direction) {
+        String query;
+        query  = 'SELECT Id, FirstName, LastName, Phone, Email FROM Contact';
+            query += ' ORDER BY '+orderBy+' '+direction;
+        return Database.query(query);
+    }
+}
